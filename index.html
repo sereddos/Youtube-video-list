@@ -40,11 +40,13 @@
     const videParamsUrl = 'http://noembed.com/embed?url=https://www.youtube.com/watch?v=' + resultParams[i];
 
     // Получаем массви данных о видео
-    fetch(videParamsUrl, { method: 'POST'})
-        .then(response => response.json())
-        .then(response => {
-          videoItemTitle.innerText = response.title;
-        });
+    fetch(videParamsUrl, {
+      method: 'POST'
+    }).then(function (response) {
+      return response.json();
+    }).then(function (response) {
+      videoItemTitle.innerText = response.title;
+    });
 
     // Вставляем елементы в DOM
     videoItemWrap.appendChild(videoItemTitle);
