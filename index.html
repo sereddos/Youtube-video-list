@@ -40,6 +40,18 @@
     const videParamsUrl = 'http://noembed.com/embed?url=https://www.youtube.com/watch?v=' + resultParams[i];
 
     // Получаем массви данных о видео
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        const myArr = JSON.parse(this.responseText);
+        videoItemTitle.innerText = myArr.title;
+      }
+    };
+    xmlhttp.open('POST', videParamsUrl, true);
+    xmlhttp.send();
+
+    /*
     fetch(videParamsUrl, {
       method: 'POST'
     }).then(function (response) {
@@ -47,6 +59,7 @@
     }).then(function (response) {
       videoItemTitle.innerText = response.title;
     });
+    */
 
     // Вставляем елементы в DOM
     videoItemWrap.appendChild(videoItemTitle);
